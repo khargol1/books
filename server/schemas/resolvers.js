@@ -8,8 +8,6 @@ const resolvers = {
       if (context.user){
       const userData = await User.findOne({})
         .select('-__v -password')
-        .populate('thoughts')
-        .populate('friends');
   
       return userData;
       }
@@ -18,13 +16,11 @@ const resolvers = {
     users: async () => {
       return User.find()
         .select('-__v -passord')
-        .populate('savedBooks')
+        
     },
     user: async (parent, { username }) => {
       return User.findOne({ username })
           .select('-__v -password')
-          .populate('friends')
-          .populate('thoughts');
   }
   },
   Mutation: {
